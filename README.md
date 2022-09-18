@@ -5,13 +5,13 @@ Decode The Binding of Isaac animation files ( .anm2 and .png ) .Composit animati
 ---
 
 ## 结果演示
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\Pickup.gif)
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\DeathTeleport.gif)
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\LightTravel.gif)
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\Jump.gif)
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\Happy.gif)
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\Sad.gif)
-![Pickup](H:\_MyDocuments\Projects\Python\IsaacAnimation2Gif\result\Hit.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Pickup.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/DeathTeleport.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/LightTravel.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Jump.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Happy.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Sad.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Hit.gif)
 
 ---
 

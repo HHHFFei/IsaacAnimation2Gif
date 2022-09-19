@@ -5,18 +5,18 @@ Decode The Binding of Isaac animation files ( .anm2 and .png ) .Composit animati
 ---
 
 ## 结果演示
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Pickup.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/DeathTeleport.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/LightTravel.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Jump.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Happy.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Sad.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Hit.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Appear.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Attack1.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Attack2.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Idle.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Leave.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Pickup.gif)
+![DeathTeleport](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/DeathTeleport.gif)
+![LightTravel](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/LightTravel.gif)
+![Jump](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Jump.gif)
+![Happy](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Happy.gif)
+![Sad](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Sad.gif)
+![Hit](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Hit.gif)
+![Appear](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Appear.gif)
+![Attack2](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Attack1.gif)
+![Attack2](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Attack2.gif)
+![Idle](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Idle.gif)
+![Leave](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Leave.gif)
 ---
 
 ## 代码说明

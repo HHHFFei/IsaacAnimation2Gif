@@ -12,11 +12,11 @@ Decode The Binding of Isaac animation files ( .anm2 and .png ) .Composit animati
 ![Happy](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Happy.gif)
 ![Sad](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Sad.gif)
 ![Hit](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player/Hit.gif)
-![Appear](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Appear.gif)
-![Attack2](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Attack1.gif)
-![Attack2](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Attack2.gif)
-![Idle](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Idle.gif)
-![Leave](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby plum/Leave.gif)
+![Appear](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby%20plum/Appear.gif)
+![Attack2](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby%20plum/Attack1.gif)
+![Attack2](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby%20plum/Attack2.gif)
+![Idle](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/908.000_baby%20plum/Idle.gif)
+![Leave](https://github.com/hhhhfff/IsaacAnimation2Gif/tree/main/result/908.000_baby%20plum/Leave.gif)
 ---
 
 ## 代码说明

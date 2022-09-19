@@ -9,14 +9,14 @@ DOMTreeRoot = DecodeXML(AnimationPath)
 AnimationInfo = GetAnimationInfo(DOMTreeRoot)
 AnimaitionList = GetAnimationFrame(DOMTreeRoot)
 
-# for Animation in AnimaitionList:
-Animation = AnimaitionList[35]
-AnimationName = Animation["Name"]
-print(AnimationName)
-LayerList = Animation["LayerAnimationList"]
-LayerInfo = AnimationInfo["LayerInfo"]
-FrameNum = Animation["FrameNum"]
-AnimationFrameImgList = MergeFrameImg(LayerList,LayerInfo,FrameNum)
+for Animation in AnimaitionList:
+# Animation = AnimaitionList[3]
+    AnimationName = Animation["Name"]
+    print(AnimaitionList.index(Animation) , AnimationName)
+    LayerList = Animation["LayerAnimationList"]
+    LayerInfo = AnimationInfo["LayerInfo"]
+    FrameNum = Animation["FrameNum"]
+    AnimationFrameImgList = MergeFrameImg(LayerList,LayerInfo,FrameNum)
 
 png_gif_pic(AnimationFrameImgList,AnimationName)
 

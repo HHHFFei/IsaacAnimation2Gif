@@ -9,6 +9,11 @@ def PreprocessImg(FrameList,path):
     Img_BGRA = cv2.imread(path,cv2.IMREAD_UNCHANGED)# 读取BGR+alpha通道
     img_RGBA = cv2.cvtColor(Img_BGRA, cv2.COLOR_BGRA2RGBA)# BGRA转RGBA
     for Frame in FrameList:
+        # 如果可见性（Visible为fales，直接输出空白图像）
+        if(Frame["Visible"] == "false"):
+            FullfillImg = np.zeros((400,400,4), np.uint8) # 不知道后面的格式具体内容
+            ImgFrameList.append(FullfillImg)
+            continue
         # 裁剪图片
         CropedImg = img_RGBA[ int(Frame['YCrop']) : (int(Frame['YCrop'])+int(Frame['Height'])) , int(Frame['XCrop']) : (int(Frame['XCrop'])+int(Frame['Width'])) ]
         # 拉伸变换
@@ -45,6 +50,7 @@ def PreprocessImg(FrameList,path):
         if preFullfillImg.size == 0:
             FullfillImg = np.zeros((400,400,4), np.uint8) # 不知道后面的格式具体内容
         else:
+            # 设置色彩通道的变化
             FullfillImg = cv2.copyMakeBorder(preFullfillImg, AddSizeList[0], AddSizeList[1],  AddSizeList[2],  AddSizeList[3], borderType=cv2.BORDER_REPLICATE)
         ImgFrameList.append(FullfillImg)
     return ImgFrameList

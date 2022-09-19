@@ -11,27 +11,23 @@ def Interpolate(FrameList,FrameNum):
         InterFrameList.append(Frame)
         # 当Delay == 1的情况：直接跳过循环。顺便就可以把最后一个关键帧跳过了
         for d in range(Frame["Delay"]-1):
-            if d == 0:
+            if d < 0:
                 break
-            # 当1且Interpolated == false 的情况，循环赋值
-            if Frame["Interpolated"] == "false":
+            # 当Interpolated == false或没有下一个关键帧（f>=len(FrameList)），直接将关键帧的值赋值给过渡帧
+            if (Frame["Interpolated"] == "false")or(f>=len(FrameList)-1):
                 InterFrameList.append(Frame)
             else:
                 FrameInsert = {}
                 FrameNext = FrameList[f+1]
                 for Key in Frame:
-                    if(Key == "Visible")or(Key == "Interpolated"):
+                    if(Key == "Visible")or(Key == "Interpolated")or(Key == "XCrop")or(Key == "YCrop")or(Key == "Width")or(Key == "Height")or(Key == "Delay"):
                         FrameInsert[Key] = Frame[Key]
                     elif(Frame[Key] == FrameNext[Key]):
                         FrameInsert[Key] = Frame[Key]
                     else:
-                        if (Key == "XPosition") or (Key =="YPosition")or (Key =="XScale") or (Key =="YScale") or (Key =="RedTint") or (Key =="GreenTint") or (Key =="BlueTint") or (Key =="AlphaTint") or (Key =="RedOffset") or (Key =="GreenOffset") or (Key =="BlueOffset") or (Key =="Rotation"):
-                            FrameInsert[Key] = int(Frame[Key]) + (int(FrameNext[Key])-int(Frame[Key]))/int(Frame['Delay'])
-                        else:
-                            FrameInsert[Key] = Frame[Key]
+                        FrameInsert[Key] = int(Frame[Key]) + (int(FrameNext[Key])-int(Frame[Key]))/int(Frame['Delay'])
                 InterFrameList.append(FrameInsert)
 
     while FrameNum > len(InterFrameList):
         InterFrameList.append(InterFrameList[-1])
     return InterFrameList
-

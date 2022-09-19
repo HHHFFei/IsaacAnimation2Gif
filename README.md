@@ -5,17 +5,22 @@ Decode The Binding of Isaac animation files ( .anm2 and .png ) .Composit animati
 ---
 
 ## 结果演示
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Pickup.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/DeathTeleport.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/LightTravel.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Jump.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Happy.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Sad.gif)
-![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/Hit.gif)
-
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Pickup.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/DeathTeleport.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/LightTravel.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Jump.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Happy.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Sad.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Hit.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Appear.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Attack1.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Attack2.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Idle.gif)
+![Pickup](https://github.com/hhhhfff/IsaacAnimation2Gif/blob/main/result/001.000_player.anm2/Leave.gif)
 ---
 
 ## 代码说明
+Python 3.10.7
 代码放在**py**文件夹中  
 主要是用的juypternotebook写的，但是感觉.ipynb不太方便版本控制，后面还是转成了python  
 主文件是`IsaacAnimationEditor.py`   
@@ -39,8 +44,8 @@ return DOMTreeRoot
 `<Info ...... />`中保存了该动画的一些信息，如作者、时间、帧率、版本等  
 `<Spritesheets>...</Spritesheets>`中保存了将会使用的图片  
 `<Layer>...</Layer>`保存了各图层的一些信息，如该层使用的图片、图层名、Id  
-`GetAnimationInfo(DOMTreeRoot)`
 ```PYTHON
+ GetAnimationInfo(DOMTreeRoot)
 # 输入：xml.dom的树状结构的根节点  
 # 输出：包含动画文件信息的字典
 return AnimationInfo =
@@ -121,10 +126,17 @@ return AnimationFrameImgList
 3. 有的动画似乎出现了错位（LostDeath）
 4. 无法选择动画文件以及动画
 5. 有的动画是由多个文件合成的，如Bethany其实是以撒的的动画再加上Bethany头发的动画，因此还需要把多个动画合并起来
+6. 有的值是整型，有的值是浮点型，有的值是字符串，还需要整理一下
 
 ---
 
 ## 更新日志
+### 20220920
+修改了README中的一些错误
+修改了插值错误的bug
+学会了在vs中的jupyternotebook添加断点调试的方法
+添加了对于visable属性的解析
+
 ### 20220919
 整理代码
 创建仓库，将代码上传到Github仓库中
@@ -247,41 +259,45 @@ gif由于图片尺寸不统一也不正常
 
 ##### 2.1.1 层动画帧 Frame
 ```XML
-			<Frame XPosition="0" YPosition="0" XPivot="32" YPivot="56" XCrop="0"  YCrop="192" Width="64" Height="64" XScale="130" YScale="70"  Delay="2"  Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"  />
+				<Frame XPosition="0" YPosition="0" XPivot="32" YPivot="56" XCrop="0"  YCrop="192" Width="64" Height="64" XScale="130" YScale="70"  Delay="2"  Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"  />
 ```
 1. XPosition="0" YPosition="0" 
 位置，图像的原点在画面帧中的位置
 
-*3. XPivot="32" YPivot="56" 
+2. XPivot="32" YPivot="56" 
 中心点，图像的中心点在图像中的位置，以裁剪的图像左上角为 (0,0)
 
-*5. XCrop="0"  YCrop="192" 
+3. XCrop="0"  YCrop="192" 
 裁切，从png文件中裁剪的图像的位置
 
-*7. Width="64" Height="64" 
+4. Width="64" Height="64" 
 尺寸，从png文件中裁剪的图像的大小，左上角为 (0,0)
 
-9. XScale="130" YScale="70"  
+5. XScale="130" YScale="70"  
 缩放，图像在画面帧中以原点为中心的缩放，正常值为（100,100）
 
-*11. Delay="2"  
+6. Delay="2"  
 延迟，图像持续的帧长度
 
-*13. Visible="true" 
+7. Visible="true" 
 可见性
 
-15. RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" 
+8. RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" 
 淡色值（红绿蓝α）
 改变图像的原点在画面帧中的颜色通道，正常值为 (255,255,255,255)
 
-17. RedOffset="0" GreenOffset="0" BlueOffset="0" 
+9. RedOffset="0" GreenOffset="0" BlueOffset="0" 
 颜色偏移（红绿蓝）
 
-19. Rotation="0" 
+10. Rotation="0" 
 旋转
 
-*21. Interpolated="true"  
+11. Interpolated="true"  
 插值
+
+> 某些属性在当插值Interpolated属性为true时，需要在后续的过渡帧中计算插值。其余不用插值的属性只需要与关键帧中的值相等即可
+> 需要插值：Pivot、Scale、Position、ColorTint、colorOffset、Rotation
+> 不用插值：Crop、Size、Delay、Visible、Interpolated
 
 
 ### 3. 零动画组 NullAnimations

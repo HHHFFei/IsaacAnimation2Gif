@@ -1,4 +1,3 @@
-import imp
 from DecodeXML2List import DecodeXML,GetAnimationInfo,GetAnimationFrame
 from MergeFrameImg import MergeFrameImg
 from ImgList2GIF import png_gif_pic
@@ -19,5 +18,3 @@ for Animation in AnimaitionList:
     AnimationFrameImgList = MergeFrameImg(LayerList,LayerInfo,FrameNum)
 
 png_gif_pic(AnimationFrameImgList,AnimationName)
-
-input()

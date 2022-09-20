@@ -29,10 +29,10 @@ Python 3.10.7
 转换的结果保存在**result**中，文件名为对应的动画名  
 > 如果在steam中下载了以撒的结合，可以在`\steamapps\common\The Binding of Isaac Rebirth\resources\gfx` 中找到更多动画文件和图片。另外，`H:\Steam\steamapps\common\The Binding of Isaac Rebirth\tools\IsaacAnimationEditor\IsaacAnimationEditor.exe` 为官方的动画工具，可能是用来进行mod开发的，但是我似乎没找到导出gif或者mp4文件的地方。
 
-### 解析XML文件  
+### 1. 解析XML文件  
 .am2文件其实是.xml文件，因此可以用解析XML文件的方法来解析该文件  
 
-#### 1. 获取XML文件树
+#### 1.1. 获取XML文件树
 通过XML.DOM解析文件，获取该文件包含的数据树，返回根节点
 ```PYTHON
 DecodeXML(file)
@@ -41,12 +41,12 @@ DecodeXML(file)
 return DOMTreeRoot
 ```
 
-#### 2. 获取动画信息
+#### 1.2. 获取动画信息
 `<Info ...... />`中保存了该动画的一些信息，如作者、时间、帧率、版本等  
 `<Spritesheets>...</Spritesheets>`中保存了将会使用的图片  
 `<Layer>...</Layer>`保存了各图层的一些信息，如该层使用的图片、图层名、Id  
 ```PYTHON
- GetAnimationInfo(DOMTreeRoot)
+GetAnimationInfo(DOMTreeRoot)
 # 输入：xml.dom的树状结构的根节点  
 # 输出：包含动画文件信息的字典
 return AnimationInfo =
@@ -58,7 +58,7 @@ return AnimationInfo =
    ]}
 ```
 
-#### 3. 获取动画帧信息
+#### 1.3. 获取动画帧信息
 根据.anm2文件的层次结构，逐层解析，得到帧信息，可参考下文的return示例  
 .anm2 文件框架  中对层次结构进行了一些分析，可供参考
 ```PYTHON
@@ -82,7 +82,7 @@ return AnimaitionList =
    {'Name': 'DeathTeleport', 'FrameNum': '21', 'LayerAnimationList': []}]
 ```
 
-### 插入过度帧
+### 2. 插入过度帧
 .anm2中只记录了关键帧的信息，如果Frame中Delay的值大于1，说明需要插入过度帧  
 Interpolated属性说明了插入帧的方法，如果值为false，则只需要将关键帧的内容复制到过度帧中 。如果值为true，则需要根据下一个关键帧中的属性的值计算过度帧中的属性值。  
 * 某些属性不进行插值处理，如Position、Scale、Tint、ColorOffset、colorRotation等值，直接复制关键帧中的值  
@@ -94,7 +94,7 @@ Interpolate(FrameList,FrameNum)
 return InterFrameList
 ```
 
-### 处理帧图片
+### 3. 处理帧图片
 根据读取图片，帧中的各属性值处理图片，得到图片列表  
 ```PYTHON
 PreprocessImg(FrameList,path)
@@ -103,7 +103,7 @@ PreprocessImg(FrameList,path)
 return ImgFrameList
 ```
 
-### 合并图层图像
+### 4. 合并图层图像
 一个动画中是由多个图层中的图像堆叠形成的，因此需要将不同图层的图片列表进行堆叠合并。
 对图层列表中的所有帧列表调用**插入过度帧** 、**处理帧图片** 得到包含所有帧图片列表的图层图片列表
 依次将各帧图片列表（FrameList）堆叠到合并图片列表（AnimationFrameImgList）中
@@ -114,24 +114,32 @@ MergeFrameImg(LayerList,LayerInfo,FrameNum)
 return AnimationFrameImgList
 ```
 
-### 合成动画
+### 5. 合成动画
 将png图片列表合成gif动画文件  
 分别尝试了用imageio和pic两个图像库进行合成。
 目前只有用pic能够成功合成透明背景的gif，所以imageio就先不要用了。但是我也没删
 
 ---
 
-## 待解决的问题
-1. 动画帧似乎有问题，走路的动画可以明显地看出中间有一段不动。可能是`Interpolate()`中的问题
-2. 画面也有问题，某些动画的画面被拉伸到了画面边界（如Glitch），应该是`PreprocessImg()`中的`cv2.copyMakeBorder` 某些参数的问题
-3. 有的动画似乎出现了错位（LostDeath）
+## 待解决的问题（按严重性和解决时间排序）
+1. 某些动画的不同图层之间出现了错位（如Dogma angel）
+2. 颜色属性的计算
+3. 循环生成多个动画时，只输出最后一个
 4. 无法选择动画文件以及动画
-5. 有的动画是由多个文件合成的，如Bethany其实是以撒的的动画再加上Bethany头发的动画，因此还需要把多个动画合并起来
-6. 有的值是整型，有的值是浮点型，有的值是字符串，还需要整理一下
+5. 某些代码效率很低，需要改进
+6. 有的动画是由多个文件合成的，如Bethany其实是以撒的的动画再加上Bethany头发的动画，因此还需要把多个动画合并起来
+7. ~~画面也有问题，某些动画的画面被拉伸到了画面边界（如Glitch），应该是`PreprocessImg()`中的`cv2.copyMakeBorder` 某些参数的问题~~（20220920修正）
+8. ~~有的值是整型，有的值是浮点型，有的值是字符串，还需要整理一下~~（20220920修正）
+9. ~~动画帧似乎有问题，走路的动画可以明显地看出中间有一段不动。可能是`Interpolate()`中的问题~~（20220919修正）
 
 ---
 
 ## 更新日志
+### 20220921
+本来想根据AlphaTint的值实现某些动画的透明度变化，试了很久都不行。原来gif没有alpha通道，只支持透明或者不透明。之后再想想怎么解决这个问题	
+~~添加对于颜色通道属性的解析：其中 `Color = Color * ColorTint` ； `Color = min( (Color + ColorOffset) , 255 )` （修改颜色通道搞死我了）~~正准备提交的时候发现并没有写好，一堆bug
+修改了边界被拉伸的错误
+
 ### 20220920
 修改了README中的一些错误
 修改了插值错误的bug

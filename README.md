@@ -136,7 +136,7 @@ return AnimationFrameImgList
 
 ## 更新日志
 ### 20220921
-本来想根据AlphaTint的值实现某些动画的透明度变化，试了很久都不行。原来gif没有alpha通道，只支持透明或者不透明。之后再想想怎么解决这个问题	
+本来想根据AlphaTint的值实现某些动画的透明度变化，试了很久都不行。原来gif没有alpha通道，只支持透明或者不透明。之后再想想怎么解决这个问题  	
 ~~添加对于颜色通道属性的解析：其中 `Color = Color * ColorTint` ； `Color = min( (Color + ColorOffset) , 255 )` （修改颜色通道搞死我了）~~  正准备提交的时候发现并没有写好，一堆bug  
 修改了边界被拉伸的错误
 
